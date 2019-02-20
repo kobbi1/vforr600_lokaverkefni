@@ -6,16 +6,16 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ParticipateInForum extends TestCase
+class ParticipateInThreadsTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
     public function unauthenticated_users_may_not_add_replies() {
-        $this->expectException("Illuminate\Auth\AuthenticationException");
-        $thread = create("App\Thread");
 
-        $this->post("/threads/1/replies", []);
+        $this->withExceptionHandling()
+            ->post("/threads/some-channel/1/replies", [])
+            ->assertRedirect("/login");
     }
 
     /** @test */
