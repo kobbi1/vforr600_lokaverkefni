@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Providers;
-
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -17,7 +16,10 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         
         \View::composer("*", function ($view) {
-            $view->with("channels", \App\Channel::all());
+            $channels = \Cache::rememberForever('channels', function() {
+                return \App\Channel::all();
+            });
+            $view->with("channels", $channels);
         });
     }
 
