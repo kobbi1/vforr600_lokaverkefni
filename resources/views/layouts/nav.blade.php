@@ -21,6 +21,7 @@
                         @endif
 
                         <li><a class="dropdown-item" href="/threads?popular=1">Popular Threads</a></li>
+                        <li><a class="dropdown-item" href="/threads?unanswered=1">Unanswered Threads</a></li>
                     </ul>
                 </li>
                 <a href="/threads/create" class="nav-link">New Thread</a>
