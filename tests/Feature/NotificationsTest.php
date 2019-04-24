@@ -36,7 +36,7 @@ class NotificationsTest extends TestCase
             "user_id" => create("App\User")->id,
             "body" => "Some Reply here" 
         ]);
-
+            
         $this->assertCount(1, auth()->user()->fresh()->notifications);
     }
 
